@@ -207,12 +207,11 @@ public class GameActivity extends AppCompatActivity {
                 }
             }
         }
-        else  if (totalSelectedBoxes ==9) {
+        if (totalSelectedBoxes == 9 && !gameOver) {
             currentTurnBanner.setImageResource(R.drawable.nowin);
             gameOver = true;
             playAgainBtn.setClickable(true);
             playAgainBtn.setVisibility(View.VISIBLE);
-
         }
     }
     public void onPlayAgain(View v ){
