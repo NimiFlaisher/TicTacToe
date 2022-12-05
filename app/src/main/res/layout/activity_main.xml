@@ -34,4 +34,24 @@
         app:layout_constraintTop_toBottomOf="@+id/ticTacToeText"
         app:layout_constraintVertical_bias="0.051" />
 
+    <Switch
+        android:id="@+id/undoSwitch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="140dp"
+        android:layout_marginTop="59dp"
+        android:layout_marginEnd="140dp"
+        android:layout_marginBottom="90dp"
+        android:checked="false"
+        android:onClick="switchState"
+        android:showText="false"
+        android:text="Undo"
+        android:textAllCaps="false"
+        android:textIsSelectable="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/playButton"
+        tools:checked="false" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

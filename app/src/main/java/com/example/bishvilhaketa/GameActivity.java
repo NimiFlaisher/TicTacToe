@@ -13,6 +13,7 @@ import java.util.Stack;
 
 public class GameActivity extends AppCompatActivity {
 
+
     private final List<int[]> comboList = new ArrayList<>();
     private final char [] boxPositions = {'E','E','E','E','E','E','E','E','E'};
     private char playerTurn = 'X';
@@ -22,12 +23,24 @@ public class GameActivity extends AppCompatActivity {
     private final ImageView [] boxesArray = {box0, box1, box2, box3, box4, box5, box6, box7, box8};
     private boolean gameOver;
     private Button playAgainBtn;
+    private Button undoButton;
     private final Stack<Integer> undoStack = new Stack<>();
+    private boolean undoEnabled;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
+
+        undoButton = findViewById(R.id.undoButton);
+        Bundle extras = getIntent().getExtras();
+
+        if (extras != null)
+            undoEnabled = extras.getBoolean("undoEnabled");
+        if (!undoEnabled){
+            undoButton.setClickable(false);
+            undoButton.setVisibility(View.INVISIBLE);
+        }
 
         playAgainBtn = findViewById(R.id.playAgainBtn);
         playAgainBtn.setClickable(false);
@@ -116,7 +129,7 @@ public class GameActivity extends AppCompatActivity {
     }
 
     public void onUndo(View v){
-        if (!gameOver && totalSelectedBoxes > 0) {
+        if (undoEnabled && !gameOver && totalSelectedBoxes > 0) {
             boxPositions[undoStack.peek()] = 'E';
             boxesArray[undoStack.pop()].setImageResource(R.drawable.empty);
             nextPlayerTurn();
