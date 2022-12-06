@@ -34,8 +34,8 @@ public class GameActivity extends AppCompatActivity {
         setContentView(R.layout.activity_game);
 
         undoButton = findViewById(R.id.undoButton);
-        Bundle extras = getIntent().getExtras();
 
+        Bundle extras = getIntent().getExtras();
         if (extras != null)
             undoEnabled = extras.getBoolean("undoEnabled");
         if (!undoEnabled){
@@ -176,5 +176,11 @@ public class GameActivity extends AppCompatActivity {
             nextPlayerTurn();
             totalSelectedBoxes-=2;
         }
+    }
+
+    public void onMenu(View v){
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.putExtra("undoEnabled", undoEnabled);
+        startActivity(intent);
     }
 }
