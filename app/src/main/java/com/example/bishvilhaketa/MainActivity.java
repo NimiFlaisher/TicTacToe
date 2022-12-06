@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+
     public void switchState(View view){
         if (!undoState)
             undoState = true;
@@ -30,3 +31,4 @@ public class MainActivity extends AppCompatActivity {
             undoState = false;
     }
 }
+
