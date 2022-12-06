@@ -165,6 +165,7 @@ public class GameActivity extends AppCompatActivity {
 
     public void onPlayAgain(View v ){
         Intent intent = new Intent(this, GameActivity.class);
+        intent.putExtra("undoEnabled", undoEnabled);
         startActivity(intent);
     }
 
@@ -176,4 +177,4 @@ public class GameActivity extends AppCompatActivity {
             totalSelectedBoxes-=2;
         }
     }
-}//hello world
+}
