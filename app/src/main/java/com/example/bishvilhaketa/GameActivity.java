@@ -18,6 +18,7 @@ public class GameActivity extends AppCompatActivity {
     private final char [] boxPositions = {'E','E','E','E','E','E','E','E','E'};
     private char playerTurn = 'X';
     private int totalSelectedBoxes = 0;
+    private ImageView winningLine;
     private ImageView currentPlayerImage, currentTurnBanner;
     private ImageView box0, box1, box2, box3, box4, box5, box6, box7, box8;
     private final ImageView [] boxesArray = {box0, box1, box2, box3, box4, box5, box6, box7, box8};
@@ -46,8 +47,11 @@ public class GameActivity extends AppCompatActivity {
         playAgainBtn.setClickable(false);
         playAgainBtn.setVisibility(View.INVISIBLE);
 
+        winningLine = findViewById(R.id.winningLineImage);
+
         currentTurnBanner = findViewById(R.id.bannerImage);
         currentTurnBanner.setImageResource(R.drawable.xplay);
+
         currentPlayerImage = findViewById(R.id.testest);
         currentPlayerImage.setImageResource(R.drawable.x);
 
@@ -103,6 +107,7 @@ public class GameActivity extends AppCompatActivity {
 
     private void checkWinner(){
         if (totalSelectedBoxes > 2){
+            int comboNumber = 0;
             for (int [] combo: comboList) {
                 if (boxPositions[combo[0]]!='E' && boxPositions[combo[0]] == boxPositions[combo[1]] && boxPositions[combo[0]] == boxPositions[combo[2]]){
                     gameOver = true;
@@ -110,7 +115,9 @@ public class GameActivity extends AppCompatActivity {
                         currentTurnBanner.setImageResource(R.drawable.xwin);
                     else
                         currentTurnBanner.setImageResource(R.drawable.owin);
+                    drawWinningLine(comboNumber);
                 }
+                comboNumber++;
             }
         }
         if (totalSelectedBoxes == 9 && !gameOver) {
@@ -121,6 +128,39 @@ public class GameActivity extends AppCompatActivity {
             playAgainBtn.setClickable(true);
             playAgainBtn.setVisibility(View.VISIBLE);
         }
+    }
+
+    public void drawWinningLine(int comboImage){
+        switch(comboImage){
+            case 0:
+                winningLine.setImageResource(R.drawable.mark3);
+                winningLine.setRotation(90);
+                break;
+            case 1:
+                winningLine.setImageResource(R.drawable.mark4);
+                winningLine.setRotation(90);
+                break;
+            case 2:
+                winningLine.setImageResource(R.drawable.mark3);
+                winningLine.setRotation(-90);
+                break;
+            case 3:
+                winningLine.setImageResource(R.drawable.mark3);
+                break;
+            case 4:
+                winningLine.setImageResource(R.drawable.mark4);
+                break;
+            case 5:
+                winningLine.setImageResource(R.drawable.mark5);
+                break;
+            case 6:
+                winningLine.setImageResource(R.drawable.mark1);
+                break;
+            case 7:
+                winningLine.setImageResource(R.drawable.mark2);
+                break;
+        }
+        winningLine.setVisibility(View.VISIBLE);
     }
 
     public void onPlayAgain(View v ){
