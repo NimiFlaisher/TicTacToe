@@ -116,6 +116,7 @@ public class GameActivity extends AppCompatActivity {
                     else
                         currentTurnBanner.setImageResource(R.drawable.owin);
                     drawWinningLine(comboNumber);
+                    break;
                 }
                 comboNumber++;
             }
@@ -182,5 +183,6 @@ public class GameActivity extends AppCompatActivity {
         Intent intent = new Intent(this, MainActivity.class);
         intent.putExtra("undoEnabled", undoEnabled);
         startActivity(intent);
+//        finish();
     }
 }
