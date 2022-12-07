@@ -165,8 +165,8 @@ public class GameActivity extends AppCompatActivity {
     }
 
     public void onPlayAgain(View v ){
-        Intent intent = new Intent(this, GameActivity.class);
-        intent.putExtra("undoEnabled", undoEnabled);
+        Intent intent = getIntent();
+        finish();
         startActivity(intent);
     }
 
@@ -180,9 +180,6 @@ public class GameActivity extends AppCompatActivity {
     }
 
     public void onMenu(View v){
-        Intent intent = new Intent(this, MainActivity.class);
-        intent.putExtra("undoEnabled", undoEnabled);
-        startActivity(intent);
-//        finish();
+        finish();
     }
 }
